@@ -21,14 +21,16 @@
     listEl.innerHTML = posts
       .map(
         (p, i) => `
-      <a class="blog-row" href="./post.html?slug=${encodeURIComponent(p.slug)}"
-         style="display:grid;grid-template-columns:112px 1fr auto;align-items:baseline;gap:24px;padding:22px 14px 22px 0;border-top:1px solid rgba(23,24,26,.14);${i === posts.length - 1 ? "border-bottom:1px solid rgba(23,24,26,.14);" : ""}transition:background .4s ease,padding-left .4s ease">
+      <a class="blog-row reveal" href="./post.html?slug=${encodeURIComponent(p.slug)}"
+         style="transition-delay:${i * 70}ms;display:grid;grid-template-columns:112px 1fr auto;align-items:baseline;gap:24px;padding:22px 14px 22px 0;border-top:1px solid rgba(23,24,26,.14);${i === posts.length - 1 ? "border-bottom:1px solid rgba(23,24,26,.14);" : ""}">
         <span style="font-family:'Noto Sans',sans-serif;font-size:.74rem;letter-spacing:.07em;color:rgba(23,24,26,.5)">${escapeHtml(p.date || "")}</span>
         <span style="font-family:Newsreader,serif;font-style:italic;font-size:clamp(1.08rem,2.2vw,1.34rem);line-height:1.5">${escapeHtml(p.title || p.slug)}</span>
         <span style="font-family:'Noto Sans',sans-serif;font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(23,24,26,.4);white-space:nowrap">${escapeHtml(p.tag || "")}</span>
       </a>`
       )
       .join("");
+
+    if (window.observeReveals) window.observeReveals(listEl);
   } catch (err) {
     // manifest missing or empty — leave the static placeholder in place
     console.debug("blog.js: no posts to render yet", err);
