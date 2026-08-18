@@ -1,29 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Chu Ngoc Vuong — Blog</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400;1,500&family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Noto+Sans:wght@400;600&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="./style.css">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400;1,6..72,500&family=Noto+Sans:wght@400;500&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  html{scroll-behavior:smooth}
+  body{margin:0;background:#f1f0ec;color:#17181a;-webkit-font-smoothing:antialiased;text-wrap:pretty;font-family:'Noto Serif',Newsreader,serif}
+  a{color:inherit;text-decoration:none}
+  a:hover{color:#b81f2a}
+
+  header{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;padding:30px clamp(24px,6vw,96px) 0}
+  .mark{font-family:'Zhi Mang Xing',cursive;font-size:2.1rem;line-height:1;letter-spacing:.04em}
+  nav{display:flex;gap:clamp(16px,2.6vw,34px);font-family:'Noto Sans',sans-serif;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;flex-wrap:wrap}
+  nav a{padding-bottom:3px;border-bottom:1px solid rgba(23,24,26,0)}
+  nav a:hover{border-bottom:1px solid rgba(23,24,26,.5);color:#17181a}
+  .cv-btn{font-family:'Noto Sans',sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;padding:9px 16px;border:1px solid rgba(23,24,26,.35);white-space:nowrap}
+  .cv-btn:hover{background:#17181a;color:#f1f0ec;border-color:#17181a}
+
+  .post-shell{max-width:68ch;margin:0 auto;padding:clamp(48px,9vh,100px) clamp(24px,6vw,96px) clamp(100px,16vh,180px)}
+  .post-back{font-family:'Noto Sans',sans-serif;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(23,24,26,.5);display:inline-block;margin-bottom:44px;border-bottom:1px solid rgba(23,24,26,0)}
+  .post-back:hover{color:#b81f2a;border-color:rgba(184,31,42,.4)}
+  .post-meta{font-family:'Noto Sans',sans-serif;font-size:.75rem;letter-spacing:.07em;color:rgba(23,24,26,.5);margin-bottom:14px}
+  .post-title{font-family:Newsreader,serif;font-style:italic;font-weight:400;font-size:clamp(2rem,5vw,3rem);line-height:1.08;margin:0 0 40px}
+  .post-body{font-size:1.05rem;line-height:1.9;color:rgba(23,24,26,.82)}
+  .post-body p{margin:0 0 1.4em}
+  .post-body h2{font-family:Newsreader,serif;font-style:italic;font-weight:400;font-size:1.5rem;color:#17181a;margin:1.8em 0 .7em}
+  .post-body h3{font-family:Newsreader,serif;font-style:italic;font-weight:400;font-size:1.2rem;color:#17181a;margin:1.6em 0 .6em}
+  .post-body pre{background:#17181a;color:#f1f0ec;padding:18px;overflow-x:auto;font-family:monospace;font-size:.85rem}
+  .post-body code{font-family:monospace;font-size:.92em;background:rgba(23,24,26,.08);padding:.1em .35em}
+  .post-body pre code{background:none;padding:0}
+  .post-body blockquote{border-left:2px solid #b81f2a;margin:0 0 1.4em;padding-left:1.2em;color:rgba(23,24,26,.6);font-style:italic}
+  .post-body a{border-bottom:1px solid rgba(23,24,26,.25)}
+  .post-body a:hover{border-color:#b81f2a}
+  .post-body img{max-width:100%}
+
+  footer{color:rgba(23,24,26,.55);padding:60px clamp(24px,6vw,96px) 60px;border-top:1px solid rgba(23,24,26,.14)}
+  footer .row{display:flex;flex-wrap:wrap;gap:26px 40px;align-items:baseline;justify-content:space-between;font-family:'Noto Sans',sans-serif;font-size:.78rem;letter-spacing:.03em}
+  footer a{border-bottom:1px solid rgba(23,24,26,.2);padding-bottom:2px}
+  footer a:hover{border-color:#b81f2a}
+  .footer-links{display:flex;gap:24px;flex-wrap:wrap}
+</style>
 </head>
 <body>
 
 <header>
   <span class="mark"><a href="./">工</a></span>
   <nav>
-    <ul>
-      <li><a href="./#blog">Blog</a></li>
-      <li><a href="./#projects">Projects</a></li>
-      <li><a href="./#experience">Experience</a></li>
-      <li><a href="./#skills">Skills</a></li>
-      <li><a href="./#about">About</a></li>
-    </ul>
+    <a href="./#blog">Blog</a>
+    <a href="./#projects">Projects</a>
+    <a href="./#experience">Experience</a>
+    <a href="./#skills">Skills</a>
+    <a href="./#about">About</a>
   </nav>
-  <a class="cv-btn" href="./cv.pdf" download>Download CV (PDF)</a>
+  <a class="cv-btn" href="./cv.pdf" download>Download CV</a>
 </header>
 
 <div class="post-shell">
@@ -32,6 +65,17 @@
   <h1 id="post-title" class="post-title">Loading…</h1>
   <div id="post-body" class="post-body"></div>
 </div>
+
+<footer>
+  <div class="row">
+    <span>© 2026 Chu Ngoc Vuong.</span>
+    <div class="footer-links">
+      <a href="mailto:chungocvuong3@gmail.com">chungocvuong3@gmail.com</a>
+      <a href="https://github.com/chungocvuong" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/cnv921" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+</footer>
 
 <script>
   (async function () {
@@ -69,16 +113,6 @@
     }
   })();
 </script>
-
-<footer>
-  <span>© 2026 Chu Ngoc Vuong.</span>
-  <div class="footer-links">
-    <a href="mailto:chungocvuong3@gmail.com">chungocvuong3@gmail.com</a>
-    <a href="https://github.com/chungocvuong" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://www.linkedin.com/in/cnv921" target="_blank" rel="noopener">LinkedIn</a>
-    <span>Hanoi, Vietnam</span>
-  </div>
-</footer>
 
 </body>
 </html>
