@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chu Ngoc Vuong — AI Engineer · Blog & CV</title>
+<meta name="description" content="AI engineer building production LLM systems — retrieval, multi-agent pipelines, and the infrastructure around them. Writing and CV.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400;1,500&family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Noto+Sans:wght@400;600&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+<header>
+  <span class="mark"><a href="./">工</a></span>
+  <nav>
+    <ul>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#about">About</a></li>
+    </ul>
+  </nav>
+  <a class="cv-btn" href="./cv.pdf" download>Download CV (PDF)</a>
+</header>
+
+<section class="hero">
+  <div class="hero-fog"></div>
+  <div class="hero-mountain"></div>
+  <svg class="hero-reeds" viewBox="0 0 60 90" xmlns="http://www.w3.org/2000/svg">
+    <path d="M10,90 C8,60 4,40 6,10"/>
+    <path d="M20,90 C19,55 24,35 18,6"/>
+    <path d="M30,90 C32,58 27,38 34,12"/>
+    <path d="M40,90 C39,60 44,42 38,16"/>
+  </svg>
+  <div class="hero-inner">
+    <span class="hero-eyebrow">AI Engineer · LLM Systems &amp; Retrieval · 2 years experience</span>
+    <h1>Chu Ngoc Vuong</h1>
+    <p>I build production LLM systems — retrieval-augmented search, multi-agent pipelines, and the serving infrastructure that keeps them honest under load — and write down what breaks along the way.</p>
+    <div class="hero-meta">
+      <span class="seal">CNV</span>
+      <span class="hero-loc">Hanoi, Vietnam</span>
+    </div>
+  </div>
+</section>
+
+<section id="blog">
+  <div class="section-head reveal"><span class="num">一</span><h2>Recent writing</h2></div>
+  <div id="blog-list">
+    <p class="empty-note">No posts yet — first one is on its way. Check back soon.</p>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-head reveal"><span class="num">二</span><h2>Projects</h2></div>
+  <div class="works">
+
+    <article class="project w1 reveal">
+      <div class="project-art" style="aspect-ratio:16/9">
+        <svg viewBox="0 0 400 225" xmlns="http://www.w3.org/2000/svg">
+          <defs><filter id="pb1" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="8"/></filter></defs>
+          <rect width="400" height="225" fill="var(--mist-mid)"/>
+          <ellipse cx="120" cy="110" rx="90" ry="60" fill="var(--mist-deep)" opacity=".3" filter="url(#pb1)"/>
+          <ellipse cx="300" cy="90" rx="90" ry="60" fill="var(--mist-deep)" opacity=".3" filter="url(#pb1)"/>
+          <g stroke="var(--charcoal)" stroke-width="1.4" fill="none" opacity=".8">
+            <path d="M70,150 C120,80 180,80 210,120"/>
+            <path d="M210,120 C240,150 300,150 330,90"/>
+            <path d="M210,120 L210,60"/>
+          </g>
+          <g fill="var(--charcoal)">
+            <circle cx="70" cy="150" r="5"/>
+            <circle cx="210" cy="120" r="6"/>
+            <circle cx="330" cy="90" r="5"/>
+            <circle cx="210" cy="60" r="5" fill="var(--clay-red)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="project-body">
+        <h3>US HTS Code Search &amp; Classification Platform</h3>
+        <p>Retrieval layer classifying free-text product descriptions into 10-digit US tariff codes — hybrid BM25 + kNN over a 23,392-document OpenSearch index, merged by weighted RRF. Added an LLM pre-search selector that hard-filters to the top-3 tariff chapters, reaching ~99% top-3 recall; zero-downtime reindexing via blue/green index builds.</p>
+        <div class="tags"><span>OpenSearch</span><span>Python</span><span>FastAPI</span><span>LLM</span></div>
+      </div>
+    </article>
+
+    <article class="project w2 reveal">
+      <div class="project-art" style="aspect-ratio:4/5">
+        <svg viewBox="0 0 240 300" xmlns="http://www.w3.org/2000/svg">
+          <defs><filter id="pb2" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter></defs>
+          <rect width="240" height="300" fill="var(--mist-mid)"/>
+          <ellipse cx="120" cy="130" rx="100" ry="90" fill="var(--mist-pale)" opacity=".5" filter="url(#pb2)"/>
+          <g stroke="var(--charcoal)" stroke-width="1.4" fill="none" opacity=".85">
+            <rect x="70" y="90" width="100" height="50" rx="2"/>
+            <path d="M120,140 L120,180"/>
+            <path d="M90,180 L150,180 L150,220 L90,220 Z"/>
+          </g>
+        </svg>
+      </div>
+      <div class="project-body">
+        <h3>Multi-Agent RAG Portal for Proteomics Reports</h3>
+        <p>Replaced a single-shot RAG call with an 8-agent orchestration pipeline (planner, decomposition, HyDE, retrieval, synthesis, fact-check, memory), each stage runtime-toggleable by feature flag. Cut ingested report size 97% by stripping images before chunking. OpenSearch kNN + Claude-backed synthesis over SSE, on AWS ECS Fargate.</p>
+        <div class="tags"><span>OpenSearch</span><span>Celery</span><span>Claude</span><span>AWS</span></div>
+      </div>
+    </article>
+
+    <article class="project w3 reveal">
+      <div class="project-art" style="aspect-ratio:5/4">
+        <svg viewBox="0 0 300 240" xmlns="http://www.w3.org/2000/svg">
+          <rect width="300" height="240" fill="var(--mist-mid)"/>
+          <line x1="0" y1="200" x2="300" y2="200" stroke="var(--charcoal-faint)" stroke-width="1"/>
+          <g stroke="var(--charcoal)" stroke-width="1.6" fill="none" opacity=".85">
+            <path d="M40,200 L40,80 L100,80 L100,200"/>
+            <path d="M140,200 L140,40 L200,40 L200,200"/>
+            <path d="M240,200 L240,120 L260,120 L260,200"/>
+          </g>
+        </svg>
+      </div>
+      <div class="project-body">
+        <h3>CRM Documentation Platform</h3>
+        <p>12-agent pipeline turning user stories and source code into structured business and API documentation — 30+ entity documents plus cross-entity flow, integration and permission models. Quality gates halt on ambiguous input before a bounded revision loop. Delivered onsite in Copenhagen for a Danish maritime client.</p>
+        <div class="tags"><span>Multi-agent</span><span>.NET</span><span>React</span></div>
+      </div>
+    </article>
+
+    <article class="project w4 reveal">
+      <div class="project-art" style="aspect-ratio:16/8">
+        <svg viewBox="0 0 400 200" xmlns="http://www.w3.org/2000/svg">
+          <defs><filter id="pb4" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="10"/></filter></defs>
+          <rect width="400" height="200" fill="var(--mist-mid)"/>
+          <ellipse cx="200" cy="100" rx="180" ry="50" fill="var(--mist-deep)" opacity=".25" filter="url(#pb4)"/>
+          <g stroke="var(--charcoal)" stroke-width="1.3" fill="none" opacity=".8">
+            <path d="M30,140 C90,60 130,60 170,110 C210,160 260,60 370,90"/>
+          </g>
+          <circle cx="30" cy="140" r="4" fill="var(--charcoal)"/>
+          <circle cx="370" cy="90" r="4" fill="var(--clay-red)"/>
+        </svg>
+      </div>
+      <div class="project-body">
+        <h3>Graph-Based Retrieval for Technical Documentation</h3>
+        <p>My first production GraphRAG system — modeled system structure as a Neo4j knowledge graph linked to Elasticsearch vector chunks, so retrieval follows entity relationships instead of text similarity alone. Owned the data layer end to end: chunking, AI-generated summaries, embeddings, dual-store ingestion.</p>
+        <div class="tags"><span>Neo4j</span><span>Elasticsearch</span><span>GraphRAG</span></div>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-head reveal"><span class="num">三</span><h2>Experience</h2></div>
+
+  <div class="row-item reveal">
+    <span class="row-date">Jul 2024 — Present</span>
+    <span class="row-title">AI Engineer — NTQ Solution JSC
+      <span class="row-sub">Core engineer on a RAG platform that won a client engagement; own retrieval and tariff-resolution work on a US customs classification product; delivered onsite to a Danish client.</span>
+    </span>
+    <span class="row-tag">Full-time</span>
+  </div>
+  <div class="row-item reveal">
+    <span class="row-date">Sep 2024 — Jun 2025</span>
+    <span class="row-title">Research Student, Human-Machine Interface Lab — UET, VNU
+      <span class="row-sub">Built an asynchronous real-time pipeline for action classification over live RTSP camera streams; improved accuracy under limited labels with semi-supervised cross-model pseudo-labeling.</span>
+    </span>
+    <span class="row-tag">Research</span>
+  </div>
+  <div class="row-item reveal">
+    <span class="row-date">2026 — Present</span>
+    <span class="row-title">AI for Health: Dementia &amp; Alzheimer's Disease
+      <span class="row-sub">Independent genome-wide association pipeline over ADNI cohorts — PLINK2 QC, population-structure PCA, and meta-analysis across cohorts.</span>
+    </span>
+    <span class="row-tag">Research</span>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="section-head reveal"><span class="num">四</span><h2>Skills</h2></div>
+  <div class="skills">
+    <div class="skill-group reveal">
+      <span class="g-label">Languages &amp; ML</span>
+      <div class="tags"><span>Python</span><span>Java</span><span>C++</span><span>SQL</span><span>PyTorch</span><span>scikit-learn</span></div>
+    </div>
+    <div class="skill-group reveal">
+      <span class="g-label">LLM &amp; Agentic</span>
+      <div class="tags"><span>RAG</span><span>GraphRAG</span><span>Hybrid Search</span><span>Multi-agent</span><span>QLoRA</span><span>GRPO</span></div>
+    </div>
+    <div class="skill-group reveal">
+      <span class="g-label">Backend &amp; Infra</span>
+      <div class="tags"><span>OpenSearch</span><span>Qdrant</span><span>Neo4j</span><span>FastAPI</span><span>Celery</span><span>Docker</span><span>AWS</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="section-head reveal"><span class="num">五</span><h2>About</h2></div>
+  <div class="about">
+    <p class="reveal">
+      I'm an <strong>AI engineer</strong> with 2 years building production LLM systems — retrieval-augmented search, multi-agent pipelines, and the serving infrastructure around them. I care about the boring parts that make systems trustworthy: zero-downtime reindexing, fail-open degradation under load, evaluation harnesses that separate real regressions from model sampling noise.
+      Published at VLSP 2025 (ACL), placed first at ImageCLEFmed MEDIQA-CORE 2026, and outside work I research AI for health — dementia and Alzheimer's disease, over ADNI cohorts.
+      This is where I'll write about what I build and what I learn debugging it.
+    </p>
+    <figure class="about-figure reveal">
+      <svg viewBox="0 0 300 375" xmlns="http://www.w3.org/2000/svg">
+        <defs><filter id="pbA" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="9"/></filter></defs>
+        <rect width="300" height="375" fill="var(--mist-mid)"/>
+        <ellipse cx="150" cy="180" rx="130" ry="120" fill="var(--mist-pale)" opacity=".5" filter="url(#pbA)"/>
+        <g stroke="var(--charcoal)" stroke-width="1.4" fill="none" opacity=".85">
+          <rect x="70" y="140" width="160" height="100" rx="3"/>
+          <path d="M100,170 L140,170 M100,190 L180,190 M100,210 L160,210"/>
+        </g>
+        <circle cx="215" cy="155" r="4" fill="var(--clay-red)"/>
+      </svg>
+    </figure>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Chu Ngoc Vuong.</span>
+  <div class="footer-links">
+    <a href="mailto:chungocvuong3@gmail.com">chungocvuong3@gmail.com</a>
+    <a href="https://github.com/chungocvuong" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/cnv921" target="_blank" rel="noopener">LinkedIn</a>
+    <span>Hanoi, Vietnam</span>
+  </div>
+</footer>
+
+<script>
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+<script src="./blog.js"></script>
+
+</body>
+</html>

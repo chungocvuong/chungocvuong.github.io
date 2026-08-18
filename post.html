@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chu Ngoc Vuong — Blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,600;1,400;1,500&family=Noto+Serif:ital,wght@0,400;0,600;1,400&family=Noto+Sans:wght@400;600&family=Zhi+Mang+Xing&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./style.css">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+</head>
+<body>
+
+<header>
+  <span class="mark"><a href="./">工</a></span>
+  <nav>
+    <ul>
+      <li><a href="./#blog">Blog</a></li>
+      <li><a href="./#projects">Projects</a></li>
+      <li><a href="./#experience">Experience</a></li>
+      <li><a href="./#skills">Skills</a></li>
+      <li><a href="./#about">About</a></li>
+    </ul>
+  </nav>
+  <a class="cv-btn" href="./cv.pdf" download>Download CV (PDF)</a>
+</header>
+
+<div class="post-shell">
+  <a class="post-back" href="./#blog">&larr; Back to writing</a>
+  <div id="post-meta" class="post-meta"></div>
+  <h1 id="post-title" class="post-title">Loading…</h1>
+  <div id="post-body" class="post-body"></div>
+</div>
+
+<script>
+  (async function () {
+    const params = new URLSearchParams(location.search);
+    const slug = params.get("slug");
+    const titleEl = document.getElementById("post-title");
+    const metaEl = document.getElementById("post-meta");
+    const bodyEl = document.getElementById("post-body");
+
+    if (!slug) {
+      titleEl.textContent = "Post not found";
+      bodyEl.innerHTML = "<p>No post specified.</p>";
+      return;
+    }
+
+    try {
+      const [manifestRes, mdRes] = await Promise.all([
+        fetch("./content/manifest.json", { cache: "no-store" }),
+        fetch(`./content/${encodeURIComponent(slug)}.md`, { cache: "no-store" }),
+      ]);
+
+      if (!mdRes.ok) throw new Error("post not found");
+
+      const manifest = manifestRes.ok ? await manifestRes.json() : [];
+      const meta = Array.isArray(manifest) ? manifest.find((p) => p.slug === slug) : null;
+      const md = await mdRes.text();
+
+      document.title = `${meta && meta.title ? meta.title : slug} — Chu Ngoc Vuong`;
+      titleEl.textContent = meta && meta.title ? meta.title : slug;
+      metaEl.textContent = [meta && meta.date, meta && meta.tag].filter(Boolean).join(" · ");
+      bodyEl.innerHTML = marked.parse(md);
+    } catch (err) {
+      titleEl.textContent = "Post not found";
+      bodyEl.innerHTML = "<p>This post doesn't exist yet.</p>";
+    }
+  })();
+</script>
+
+<footer>
+  <span>© 2026 Chu Ngoc Vuong.</span>
+  <div class="footer-links">
+    <a href="mailto:chungocvuong3@gmail.com">chungocvuong3@gmail.com</a>
+    <a href="https://github.com/chungocvuong" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/cnv921" target="_blank" rel="noopener">LinkedIn</a>
+    <span>Hanoi, Vietnam</span>
+  </div>
+</footer>
+
+</body>
+</html>
